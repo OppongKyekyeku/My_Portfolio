@@ -1071,6 +1071,7 @@ ScrollTrigger.create({
             ease: 'power3.out',
             delay: 0.5
         });
+
     }
 });
 

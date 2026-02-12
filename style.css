@@ -1946,6 +1946,28 @@ button:focus-visible {
     transform: translateX(4px);
 }
 
+.posts-view-all {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.view-all-posts-btn {
+    gap: 0.5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 43, 43, 0.5);
+}
+
+.view-all-posts-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform var(--transition-base);
+}
+
+.view-all-posts-btn:hover svg {
+    transform: translateX(4px);
+}
+
 /* ===================================
    LATEST POSTS RESPONSIVE
    =================================== */
