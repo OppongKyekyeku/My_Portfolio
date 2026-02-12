@@ -265,10 +265,14 @@ img {
 }
 
 .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     padding: 1rem 2.5rem;
     font-size: var(--font-size-base);
     font-weight: 600;
+    line-height: 1;
     border-radius: 50px;
     overflow: hidden;
     opacity: 1;
