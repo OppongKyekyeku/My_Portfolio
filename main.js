@@ -102,7 +102,7 @@ gsap.set('.navbar', { y: -100, opacity: 0 });
 gsap.set('.intro-text', { y: 30, opacity: 0 });
 gsap.set('.hero-headline .line', { y: 50, opacity: 0 });
 gsap.set('.hero-description', { y: 30, opacity: 0 });
-gsap.set('.btn', { scale: 0.8, opacity: 0 });
+gsap.set('.hero .cta-buttons .btn', { y: 24, opacity: 0 });
 gsap.set('.social-links-mobile', { y: 20, opacity: 0 });
 gsap.set('.hero-image', { x: 100, opacity: 0 });
 gsap.set('.social-links-desktop a', { x: -50, opacity: 0 });
@@ -137,14 +137,14 @@ heroTimeline.to('.hero-description', {
     duration: 0.8
 }, '-=0.5');
 
-// Animate buttons with pop effect
-heroTimeline.to('.btn', {
-    scale: 1,
+// Animate hero CTA buttons
+heroTimeline.to('.hero .cta-buttons .btn', {
+    y: 0,
     opacity: 1,
     duration: 0.6,
-    stagger: 0.15,
-    ease: 'back.out(1.7)'
-}, '-=0.4');
+    stagger: 0.12,
+    ease: 'power3.out'
+}, '-=0.35');
 
 // Animate mobile social links
 heroTimeline.to('.social-links-mobile', {
@@ -225,52 +225,6 @@ heroSection.addEventListener('mouseleave', () => {
             ease: 'power2.out'
         });
     }
-});
-
-// ===================================
-// BUTTON MAGNETIC EFFECT
-// ===================================
-const buttons = document.querySelectorAll('.btn');
-
-buttons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-        gsap.to(this, {
-            scale: 1.05,
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    });
-    
-    button.addEventListener('mouseleave', function() {
-        gsap.to(this, {
-            scale: 1,
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    });
-    
-    // Magnetic effect on mouse move
-    button.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        gsap.to(this, {
-            x: x * 0.3,
-            y: y * 0.3,
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    });
-    
-    button.addEventListener('mouseleave', function() {
-        gsap.to(this, {
-            x: 0,
-            y: 0,
-            duration: 0.5,
-            ease: 'elastic.out(1, 0.3)'
-        });
-    });
 });
 
 // ===================================
@@ -373,6 +327,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 }
 
 // Keyboard navigation for buttons
+const buttons = document.querySelectorAll('.btn');
 buttons.forEach(button => {
     button.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -405,6 +360,14 @@ tabButtons.forEach(button => {
             { opacity: 0, y: 30 },
             { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
         );
+
+        // Animate contact tab CTA buttons when contact tab becomes active
+        if (targetTab === 'contact') {
+            gsap.fromTo('#contact .contact-cta .btn',
+                { y: 18, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out', delay: 0.1 }
+            );
+        }
         
         // Animate skill bars if Skills tab is clicked
         if (targetTab === 'skills') {
@@ -427,7 +390,7 @@ gsap.set('.about-image', { x: -100, opacity: 0 });
 gsap.set('.about-decoration', { scale: 0, rotation: -45, opacity: 0 });
 gsap.set('.about .section-title', { y: 30, opacity: 0 });
 gsap.set('.about .title-underline', { width: 0 });
-gsap.set('.tab-btn', { scale: 0, opacity: 0 });
+gsap.set('.about .tab-btn', { y: 20, opacity: 0 });
 gsap.set('#about-me.tab-content.active', { opacity: 0, y: 30 });
 
 // Animate about section on scroll
@@ -469,14 +432,14 @@ ScrollTrigger.create({
             ease: 'power3.out',
             delay: 0.5
         });
-        
+
         // Animate tab buttons
-        gsap.to('.tab-btn', {
-            scale: 1,
+        gsap.to('.about .tab-btn', {
+            y: 0,
             opacity: 1,
-            duration: 0.6,
+            duration: 0.5,
             stagger: 0.1,
-            ease: 'back.out(1.7)',
+            ease: 'power3.out',
             delay: 0.6
         });
         
@@ -601,31 +564,6 @@ ScrollTrigger.create({
             ease: 'power3.out'
         });
     }
-});
-
-// ===================================
-// TAB BUTTON MAGNETIC EFFECT
-// ===================================
-tabButtons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-        if (!this.classList.contains('active')) {
-            gsap.to(this, {
-                scale: 1.05,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        }
-    });
-    
-    button.addEventListener('mouseleave', function() {
-        if (!this.classList.contains('active')) {
-            gsap.to(this, {
-                scale: 1,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        }
-    });
 });
 
 // ===================================
